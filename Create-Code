@@ -1,2 +1,46 @@
-int main{
-shut_down_in(119);
+void turnOurRight();
+void turnOurLeft();
+void downArm();
+void upArm();
+void lineFollow();
+int counter = 0;
+int main()
+{
+    create_connect();
+    enable_servos();
+    shut_down_in(119);
+    
+    create_disconnect();
+    return 0;
+}
+void turnOurLeft(){
+    create_drive_direct(-200, 200);
+    msleep (880);
+}
+void turnOurRight(){
+    create_drive_direct(200, -200);
+    msleep (880);
+}
+void downArm(){
+    while (get_servo_position(0) < 1100){
+        set_servo_position (0, get_servo_position(0) + 5);
+        	msleep(10);
+    }
+}
+void upArm(){
+    while (get_servo_position(0) > 200){
+        set_servo_position (0, get_servo_position(0) - 5);
+        	msleep(10);
+    }
+}
+void lineFollow(){
+   while (digital(0) == 0){
+       if (analog(0) < 1000){
+           create_drive_direct(-150, -100);
+           	msleep(350);}
+    	else {
+            create_drive_direct(-100, -150);
+            msleep(350);}
+    counter++;
+   }
+}
