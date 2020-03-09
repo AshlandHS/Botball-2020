@@ -9,7 +9,70 @@ int main()
     create_connect();
     enable_servos();
     shut_down_in(119);
+    set_servo_position(0, 200);
     
+    msleep(1000);
+    
+    turnOurRight();
+    
+   	while (analog(0) < 1000){
+        create_drive_direct(-200, -200);
+    }
+    create_drive_direct(-200, -200);
+    	msleep(1400);
+    turnOurLeft();
+    
+    lineFollow();
+    create_stop();
+    	msleep(1000);
+    
+    create_drive_direct(200, 200);
+    	msleep(500);
+    create_stop();
+    	msleep(1000);
+    
+    turnOurLeft();
+    //create_drive_direct(-200, 200);
+    	//msleep(150);
+    create_stop();
+    	msleep(1000);
+    
+    while (analog(0) < 1000){
+        create_drive_direct(-200, -200);
+    }
+    
+    create_stop();
+    msleep(1000);
+    create_drive_direct(-200, -200);
+    msleep(300);
+    
+    while (analog(0) < 1000){
+        create_drive_direct(-200, -200);
+    }
+    
+    create_stop();
+    create_drive_direct(150, 150);
+    msleep(120);
+    create_stop();
+    
+    downArm();
+	set_servo_position(0, 1100);
+    
+    create_drive_direct(200, 200);
+    	msleep(1400);
+    create_drive_direct(100, -100);
+    	msleep(1500);
+    /*create_drive_direct(200, 200);
+    msleep(1700);
+    create_stop();
+    
+    create_drive_direct(100, -100);//spin to grab cubes
+    	msleep(700);
+    create_drive_direct(200, 200);
+    	msleep(500);
+    
+    create_drive_direct(100, -100);
+    	msleep(900);*/
     create_disconnect();
     return 0;
 }
